@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Big Auth</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/styleNavBar.css' %}">
+    </head>
+
+    <body>
+      <nav class="navbar">
+        <div class="navbar-container">
+          <div class="navbar-logo">
+            <a href="#">BigAuth</a>
+          </div>
+          <div class="navbar-menu">
+            <a href="#" class="menu-item active">Home</a>
+          </div>
+          <div class="navbar-actions">
+            {% if request.user.is_authenticated %}
+              <div class="user-indicator">
+                <span>{{ user.email }}</span>
+              </div>
+              <a href="{% url 'authSys:logout' %}" class="action-button logout">
+                <span>Logout</span>
+              </a>
+            {% else %}
+              <a href="{% url 'authSys:login' %}" class="action-button login">Login</a>
+              <a href="{% url 'authSys:register' %}" class="action-button register">Register</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    {% block content %}
+    
+    {% endblock content %}
+    </body>
+</html>
