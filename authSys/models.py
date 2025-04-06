@@ -35,7 +35,17 @@ class Member(AbstractBaseUser, PermissionsMixin):
 
     USERNAME_FIELD = 'email' #use email as principal instead of username
 
+    # string return of a member object
+    def __str__(self):
+        return str(self.email)
+    
     #set last login datetime 
     def update_last_login(self):
         self.last_login = now()
         self.save(update_fields=["last_login"]) 
+
+class digiCode(models.Model):
+    #OneToOne field -> on Member model -> delete on Cascade = student deleted -> code deleted
+    id_member = models.OneToOneField(Member,primary_key=True, on_delete=models.CASCADE)
+    code = models.IntegerField(unique=True)
+    expiration_datetime = models.DateTimeField()

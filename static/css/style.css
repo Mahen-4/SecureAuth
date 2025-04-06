@@ -42,6 +42,7 @@ h1::after {
   border-radius: 2px;
 }
 
+/* ------------------------------- FORM ---------------------------------*/
 form {
   display: flex;
   flex-direction: column;
@@ -135,6 +136,26 @@ button[type="submit"]:active {
   box-shadow: 0 3px 8px rgba(94, 114, 228, 0.4);
 }
 
+.links-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 25px;
+}
+
+a {
+  text-decoration: none;
+  color: #5e72e4;
+  font-size: 14px;
+  margin-top: 15px;
+  text-align: center;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #825ee4;
+  text-decoration: underline;
+}
 
 
 /* ---------------------- HOME PAGE ------------------------------ */
@@ -179,7 +200,6 @@ button[type="submit"]:active {
 
 .gradient-text {
   background: linear-gradient(to right, #ffffff, #e0e7ff);
-  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -287,3 +307,5 @@ button[type="submit"]:active {
   font-size: 14px;
   margin-top: auto;
 }
+
+/* ----------------------------- CODE A2F PAGE ---------------------------------

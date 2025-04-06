@@ -3,6 +3,7 @@ from .models import Member
 
 #create form for Member model
 class MemberForm(forms.ModelForm):
+    email = forms.EmailField(widget=forms.EmailInput())
     password = forms.CharField(widget=forms.PasswordInput())
     class Meta:
         model = Member
@@ -17,3 +18,6 @@ class LoginForm(forms.Form):
         label="Password",
         widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Enter your password"}),
     )
+
+class digiCodeForm(forms.Form):
+    code = forms.IntegerField(min_value=0, widget=forms.NumberInput())

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h1>Verification required</h1>
+    <form method="post">
+
+        <p>We've sent you a 2FA code.
+            Check your email inbox and enter the code to continue.
+            If you don't see it, make sure to check your spam or junk folder.</p>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Continue</button>
+        <a href="{% url 'authSys:login' %}">Back to login</a>
+    
+    </form>
+
+</div>
+
+    
+{% endblock content %}

@@ -11,6 +11,8 @@
             {% csrf_token %}
             {{ form.as_p }}
             <button type="submit">LogIn</button>
+            <a href="{% url 'authSys:register' %}">Don't have an account ? Register</a>
+            <a href="#">Forgot password ? </a>
         </form>
     </div>
 {% endblock content %}
