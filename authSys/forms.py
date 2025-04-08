@@ -19,5 +19,11 @@ class LoginForm(forms.Form):
         widget=forms.PasswordInput(attrs={"class": "form-control", "placeholder": "Enter your password"}),
     )
 
-class digiCodeForm(forms.Form):
+class DigiCodeForm(forms.Form):
     code = forms.IntegerField(min_value=0, widget=forms.NumberInput())
+
+class Reset_passwordForm(forms.Form):
+    email = forms.EmailField(widget=forms.EmailInput())
+
+class New_passwordForm(forms.Form):
+    password = forms.CharField(widget=forms.PasswordInput())

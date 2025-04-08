@@ -44,8 +44,8 @@ class Member(AbstractBaseUser, PermissionsMixin):
         self.last_login = now()
         self.save(update_fields=["last_login"]) 
 
-class digiCode(models.Model):
-    #OneToOne field -> on Member model -> delete on Cascade = student deleted -> code deleted
+class UuidCode(models.Model):
+    #OneToOne field -> on Member model -> delete on Cascade = member deleted -> code deleted
     id_member = models.OneToOneField(Member,primary_key=True, on_delete=models.CASCADE)
-    code = models.IntegerField(unique=True)
+    code_uuid = models.CharField(unique=True, max_length=250)
     expiration_datetime = models.DateTimeField()
