@@ -1,0 +1,5 @@
+2025-04-09 18:35:35,811 INFO Django server starting via WSGI
+2025-04-09 18:38:28,149 INFO User created and added to table
+2025-04-09 18:38:39,593 INFO Mail for A2F code sent
+2025-04-09 18:38:58,502 INFO User Connected to app
+2025-04-09 18:39:11,899 INFO User connexion failed

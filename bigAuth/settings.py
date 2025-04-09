@@ -137,6 +137,33 @@ USE_TZ = True
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'standard': {
+            'format': '{asctime} {levelname} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'custom_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': BASE_DIR / 'logs/custom_logs.log',  # Path relative to project or absolute path
+            'formatter': 'standard',
+        },
+    },
+    'loggers': {
+        'custom': {
+            'handlers': ['custom_file'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 

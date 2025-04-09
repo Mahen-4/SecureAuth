@@ -13,7 +13,7 @@ import datetime
 import uuid
 from django.utils import timezone
 from django.contrib import messages
-
+import logging
 
 #load env variables
 env = environ.Env()
@@ -43,6 +43,11 @@ def register_member(request):
             Member.objects.create_user(email=email, password=password)
             
             messages.success(request, "Account created !")
+
+            # add logs info
+            logger = logging.getLogger('custom')
+            logger.info("User created and added to table")
+
             return redirect('authSys:login') 
     else:
         form = MemberForm() #return empty form
@@ -68,6 +73,11 @@ def login_member(request):
             
             else:
                 form.add_error(None, "Email or password is incorrect !")
+
+                # add logs info
+                logger = logging.getLogger('custom')
+                logger.info("User connexion failed")
+
                 return render(request, "login.html", {'form': form})
     else:
         form = LoginForm() #return empty form
@@ -123,6 +133,11 @@ def code_a2f_member(request):
         email_from = env('EMAIL_HOST_USER')
         recipient_list = [member_email]   
         send_mail( subject, message, email_from, recipient_list )
+
+        # add logs info
+        logger = logging.getLogger('custom')
+        logger.info("Mail for A2F code sent")
+        
         messages.success(request, "Mail sended, please check you mailbox")
 
     if request.method == "POST":
@@ -144,6 +159,10 @@ def code_a2f_member(request):
                 request.session.pop(f"digiCode{member_email}", None)
                 request.session.pop(f"digiCode_expire{member_email}", None)
                 request.session.pop("member_email", None)
+
+                # add logs info
+                logger = logging.getLogger('custom')
+                logger.info("User Connected to app")
 
                 return redirect('home_view')
             else:
@@ -190,6 +209,11 @@ def reset_password_member(request):
                 recipient_list = [member_email]   
                 send_mail( subject, message, email_from, recipient_list )
                 messages.success(request, "Mail sended, please check you mailbox")
+
+                # add logs info
+                logger = logging.getLogger('custom')
+                logger.info("Mail for reset password sent")
+
             else:
                 form.add_error('email', "this email doesn't exist")
                 return render(request,'reset_password.html', {'form': form})
@@ -216,6 +240,12 @@ def new_password_member(request, uuid):
             member.set_password(form.cleaned_data['password']) 
             member.save() # save to table
             messages.success(request, "Password updated")
+
+            # add logs info
+            logger = logging.getLogger('custom')
+            logger.info("Member table password field updated")
+
+
             return redirect('authSys:login')
     else:
         form = New_passwordForm()
